@@ -67,6 +67,7 @@ set shiftwidth=4
 " On pressing tab, insert 4 spaces
 set expandtab
 
+set backspace=indent,eol,start
 
 set mouse=a
 
