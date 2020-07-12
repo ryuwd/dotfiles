@@ -3,13 +3,6 @@ filetype off                  " required
 filetype plugin on
 set number
 
-if &term =~ '256color'
-  " disable Background Color Erase (BCE) so that color schemes
-  " render properly when inside 256-color tmux and GNU screen.
-  " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
-  set t_ut=
-endif
-
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -20,21 +13,11 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " Make sure you use single quotes
- Plug 'frazrepo/vim-rainbow'
  Plug 'tpope/vim-fugitive'
-
-" Plug 'itchyny/lightline.vim'
-
- "let g:lightline = {
-"\ 'colorscheme': 'wombat',
-"\ }
-
  Plug 'vim-airline/vim-airline'
  Plug 'vim-airline/vim-airline-themes'
 
  Plug 'scrooloose/nerdcommenter'
-
- Plug 'sickill/vim-monokai'
 
  Plug 'junegunn/fzf', { 'do': './install --bin' }
  Plug 'junegunn/fzf.vim'
@@ -50,16 +33,29 @@ call plug#begin('~/.vim/plugged')
  Plug 'nathanaelkane/vim-indent-guides'
 
  Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --system-libclang' }
+ 
+ Plug 'arcticicestudio/nord-vim'
 
  Plug 'easymotion/vim-easymotion'
 
 call plug#end()
-let &t_ut=''
 
 set laststatus=2
-syntax enable
-colorscheme monokai
 
+colorscheme nord " monokai
+
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+syntax enable
+
+"if &term =~ '256color'
+  " disable Background Color Erase (BCE) so that color schemes
+  " render properly when inside 256-color tmux and GNU screen.
+  " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
+  set t_ut=""
+"endif
 
 filetype plugin indent on
 " show existing tab with 4 spaces width
