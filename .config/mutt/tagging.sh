@@ -19,7 +19,7 @@ function untag_mail_for_PM_tag() {
 
 function tag_mail_for_PM_tag_cust() {
     notmuch tag +"$2" 'folder:"pm/Labels.'$1'"' and 'folder:"pm/All Mail"'
-
+    notmuch tag -"$2" 'NOT folder:"pm/Labels.'$1'"' and 'folder:"pm/All Mail"'
 }
 
 function sync_and_tag() {

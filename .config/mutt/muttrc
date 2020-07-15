@@ -29,12 +29,22 @@ alternative_order text/plain text/enriched text/html
 
 set sort = threads 
 set sort_aux = reverse-last-date-received
-set wait_key = no
 
-set date_format="%d/%m/%y %I:%M%p"
-set index_format='%2C %Z %?X?A& ? %D %-15.15F %?GL?%GL &?%?GS?%GS &?%?GR?%GR &?%?Gm?%Gm &?%?Ga?%Ga &?%?Gu?%Gu &?%s (%-4.4c)'
+set sidebar_visible = yes
+set sidebar_width = 15
+set sidebar_short_path = yes
+set sidebar_next_new_wrap = yes
+set mail_check_stats
 
+#set sidebar_format = '%B%?F? [%F]?%* %?N?%N/? %?S?%S?'
+set sidebar_format = '%B%?N? [%N]?%* %?S?%S?'
+
+set date_format="%d/%m/%y %H:%M"
+set index_format='%2C %Z %?X?A& ? %<[y?%<[m?%<[d?%[   %H:%M]&%[  %a %d]>&%[  %b %d]>&%[%d/%m/%y]> %-15.15F %?GL?%GL &?%?GS?%GS &?%?GR?%GR &?%?Gm?%Gm &?%?Ga?%Ga &?%?Gu?%Gu &?%s (%-4.4c)'
 
 source colours.muttrc
 source bindings.muttrc
 source account.muttrc
+
+source /usr/share/doc/neomutt/samples/gpg.rc
+set pgp_verify_sig=yes
