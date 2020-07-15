@@ -8,4 +8,8 @@ alias dotfiles='git --git-dir=$HOME/.dfcfg/ --work-tree=$HOME'
 
 git clone --bare git@github.com:ryuwd/dotfiles $HOME/.dfcfg
 dotfiles checkout
+
+dotfiles submodule update --init
 ```
+
+
