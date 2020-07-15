@@ -15,3 +15,8 @@ export EDITOR=vim
 alias mutt='neomutt'
 
 source ~/.zshrc.common
+
+
+[[ ! -f ~/.zshrc.local ]] || source ~/.zshrc.local
+
+
