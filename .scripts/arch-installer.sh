@@ -84,6 +84,8 @@ echo "Pacstrap"
 
 pacstrap /mnt ${PACKAGES}
 
+genfstab -U /mnt >> /mnt/etc/fstab
+
 arch-chroot /mnt
 
 # run inside chroot the following:
