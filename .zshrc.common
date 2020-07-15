@@ -29,3 +29,6 @@ function setup_agents() {
 
     ssh-add
 }
+
+
+alias dotfiles='git --git-dir=$HOME/.dfcfg/ --work-tree=$HOME'
