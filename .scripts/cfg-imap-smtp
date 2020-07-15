@@ -1,0 +1,35 @@
+#!/usr/bin/python
+
+import os
+
+substitutes = {
+    '$EMAIL_XYZ':'',
+    '$EMAIL_OUTLOOK':'',
+    '$EMAIL': '',
+}
+
+files = ['.mbsyncrc.template','.config/msmtp/config.template']
+
+def main():
+    for var, _ in substitutes.items():
+        substitutes[var] = input("%s = " % var)
+
+    for filename in files:
+        filename = os.path.join( os.environ['HOME'], filename )
+        contents = ''
+        with open(filename, 'r') as f:
+            contents = f.read()
+        
+        for var, subfor in substitutes.items():
+            contents = contents.replace(var, subfor)
+        
+        filename = filename.replace('.template','')
+        # write new file to new location
+        with open(filename, 'w') as f:
+            f.write(contents)
+
+    print("Done!")
+
+if __name__ == '__main__':
+    main()
+
