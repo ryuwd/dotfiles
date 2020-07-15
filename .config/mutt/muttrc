@@ -1,0 +1,40 @@
+# vim: filetype=neomuttrc
+
+
+set smtp_authenticators = 'gssapi:login'
+set query_command = "abook --mutt-query '%s'"
+set rfc2047_parameters = yes
+set sleep_time = 0	        	# Pause 0 seconds for informational messages
+set markers = no		        # Disables the `+` displayed at line wraps
+set mark_old = no		        # Unread mail stay unread until read
+set mime_forward = yes	    	# attachments are forwarded with mail
+set wait_key = no		        # mutt won't ask "press key to continue"
+set fast_reply			        # skip to compose when replying
+set fcc_attach			        # save attachments with the body
+set forward_format = "Fwd: %s"	# format of subject when forwarding
+set forward_quote		        # include message in forwards
+set reverse_name		        # reply as whomever it was to
+set include			            # include message in replies
+set mail_check=60               # to avoid lags using IMAP with some email providers (yahoo for example)
+set charset = utf-8
+
+set mailcap_path = $HOME/.config/mutt/mailcap
+set nm_default_url = "notmuch://$HOME/.local/share/mail"
+
+
+auto_view text/html		# automatically show html (mailcap uses w3m)
+auto_view application/pgp-encrypted
+alternative_order text/plain text/enriched text/html
+
+
+set sort = threads 
+set sort_aux = reverse-last-date-received
+set wait_key = no
+
+set date_format="%d/%m/%y %I:%M%p"
+set index_format='%2C %Z %?X?A& ? %D %-15.15F %?GL?%GL &?%?GS?%GS &?%?GR?%GR &?%?Gm?%Gm &?%?Ga?%Ga &?%?Gu?%Gu &?%s (%-4.4c)'
+
+
+source colours.muttrc
+source bindings.muttrc
+source account.muttrc

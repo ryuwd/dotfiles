@@ -1,0 +1,63 @@
+# vim: filetype=neomuttrc
+# muttrc file for account pm
+set sendmail = "msmtp --read-envelope-from"
+
+source personal_info.muttrc
+
+set crypt_autosign = yes
+set crypt_opportunistic_encrypt = yes
+set pgp_self_encrypt = yes
+
+unmailboxes *
+
+set folder = "$HOME/.local/share/mail/pm"
+set header_cache = $HOME/.cache/mutt/pm/headers
+set message_cachedir = $HOME/.cache/mutt/pm/bodies
+set mbox_type = Maildir
+
+set spoolfile = "+INBOX"
+set record = "+Sent"
+set postponed = "+Drafts"
+set trash = "+Trash"
+
+mailboxes "=INBOX"
+virtual-mailboxes " INBOX (+tags)" "notmuch://?query=folder:pm/INBOX and NOT tag:archive"
+virtual-mailboxes " All Mail" "notmuch://?query=folder:\"pm/All Mail\""
+mailboxes "=Sent" "=Drafts" "=Archive" "=Trash" "=Spam"
+
+
+
+# account-specific bindings
+
+bind index,pager gg noop
+bind index,pager g noop
+bind index,pager M noop
+bind index,pager C noop
+bind index gg first-entry
+macro index o "!source $HOME/.config/mutt/tagging.sh && sync_and_tag pm ^M" "run mbsync to sync pm"
+
+macro index,pager gi "<change-folder> INBOX (+tags)<enter>" "go to inbox" 
+
+macro index,pager Mi ";<save-message>=INBOX<enter>" "move mail to inbox" 
+macro index,pager Ci ";<copy-message>=INBOX<enter>" "copy mail to inbox" 
+macro index,pager gs "<change-folder>=Sent<enter>" "go to sent" 
+macro index,pager Ms ";<save-message>=Sent<enter>" "move mail to sent" 
+macro index,pager Cs ";<copy-message>=Sent<enter>" "copy mail to sent" 
+macro index,pager gd "<change-folder>=Drafts<enter>" "go to drafts" 
+macro index,pager Md ";<save-message>=Drafts<enter>" "move mail to drafts" 
+macro index,pager Cd ";<copy-message>=Drafts<enter>" "copy mail to drafts" 
+macro index,pager gS "<change-folder>=Spam<enter>" "go to spam" 
+macro index,pager MS ";<save-message>=Spam<enter>" "move mail to spam" 
+macro index,pager CS ";<copy-message>=Spam<enter>" "copy mail to spam" 
+macro index,pager ga "<change-folder>=Archive<enter>" "go to archive" 
+macro index,pager Ma ";<save-message>=Archive<enter>" "move mail to archive" 
+macro index,pager Ca ";<copy-message>=Archive<enter>" "copy mail to archive" 
+
+macro index,pager gt "<change-folder>=Trash<enter>" "go to trash" 
+macro index,pager Mt ";<save-message>=Trash<enter>" "move mail to trash" 
+
+macro compose v "<edit-from>^Uid\_<tab>" "Select FROM alias"
+
+
+# Labelling setup
+source labels.muttrc
