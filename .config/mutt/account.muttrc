@@ -21,8 +21,10 @@ set postponed = "+Drafts"
 set trash = "+Trash"
 
 virtual-mailboxes " CONCISE" "notmuch://?query=folder:pm/INBOX and NOT tag:archive and NOT tag:promo and NOT tag:social"
+virtual-mailboxes " THREADS" "notmuch://?type=threads&query=folder:pm/INBOX"
 mailboxes "=INBOX"
 virtual-mailboxes "All Mail" "notmuch://?query=folder:\"pm/All Mail\""
+virtual-mailboxes "Important" "notmuch://?query=tag:flagged"
 mailboxes "=Sent" "=Drafts" "=Archive" "=Trash" "=Spam"
 
 

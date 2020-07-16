@@ -27,11 +27,17 @@ auto_view application/pgp-encrypted
 alternative_order text/plain text/enriched text/html
 
 
-set sort = threads 
-set sort_aux = reverse-last-date-received
+set sort = reverse-threads 
+set sort_aux = last-date-received
+
+set collapse_all       = yes
+set uncollapse_new     = yes  # open threads when new mail
+set uncollapse_jump    = yes  # jump to unread message when uncollapse
+set collapse_unread    = no   # don't collapse threads with unread mails
+
 
 set sidebar_visible = yes
-set sidebar_width = 15
+set sidebar_width = 17 
 set sidebar_short_path = yes
 set sidebar_next_new_wrap = yes
 set mail_check_stats
@@ -40,7 +46,7 @@ set mail_check_stats
 set sidebar_format = '%B%?N? [%N]?%* %?S?%S?'
 
 set date_format="%d/%m/%y %H:%M"
-set index_format='%2C %Z %?X?A& ? %<[y?%<[m?%<[d?%[   %H:%M]&%[  %a %d]>&%[  %b %d]>&%[%d/%m/%y]> %-15.15F %?GL?%GL &?%?GS?%GS &?%?GR?%GR &?%?Gm?%Gm &?%?Ga?%Ga &?%?Gu?%Gu &?%s (%-4.4c)'
+set index_format='%2C %Z %?X?A& ? %<[y?%<[m?%<[d?%[   %H:%M]&%[  %a %d]>&%[  %b %d]>&%[%d/%m/%y]> %-15.15F %?GL?%GL &?%?GS?%GS &?%?GR?%GR &?%?Gm?%Gm &?%?Ga?%Ga &?%?Gu?%Gu &?%?M?(%M) &?%s (%-4.4c)'
 
 source colours.muttrc
 source bindings.muttrc

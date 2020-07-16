@@ -40,7 +40,10 @@ function sync_and_tag() {
     if ! grep -q "No new mail." <<< "$PM_OUT"; then
         echo "We've got mail!"
         LASTLINE=$(echo "$PM_OUT" | tail -1)
-        notify-send --icon=email -t 10000 "New mail" "$LASTLINE"
+        
+        NMAILS=$(notmuch search tag:unread | wc -l)
+
+        notify-send --icon=email -t 10000 "New mail ($NMAILS unread)" "$LASTLINE"
     fi
 
 }
