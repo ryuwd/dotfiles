@@ -1,0 +1,10 @@
+[Unit]
+Description=Fetch all mail for mbsync channel %i
+
+[Service]
+Type=simple
+ExecStart=/home/ryuwd/.config/mutt/mbsync-cron.sh %i
+
+[Install]
+WantedBy=timers.target
+
